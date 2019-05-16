@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>Trips</title>
+</head>
+<body>
+  <!-- DISPLAY ALL TRIPS IN TABLE -->
+  <div class="container-fluid">
+    <h1>Hello {{ session['first_name'] }}!</h1>
+    <a href="/logout" class="col-md-4 offset-md-4">Logout</a>
+    <a href="/trips/new" class="btn btn-warning">Create a new trip!</a>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages%}
+          <p class="green">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <h3>Your Trips:</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Destination</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Plan</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for trip in all_trips %}
+      <tr>
+        <td><a href="/trips/{{ trip['id'] }}">{{ trip['destination'] }}</a></td>
+        <td>{{ trip['start_date'] }}</td>
+        <td>{{ trip['end_date'] }}</td>
+        <td>{{ trip['plan'] }}</td>
+        <td><a href="/delete/{{ trip['id'] }}">Remove</a> | <a href="/trips/edit/{{ trip['id'] }}">Edit</a></td>
+      </tr>
+      {% endfor %}
+  </div>
+</body>
+</html>

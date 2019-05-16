@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>View Trips</title>
+</head>
+<body>
+  <div class="container-fluid">
+      <h1>Hello {{ session['first_name'] }}! Read about your trip!</h1>
+      <a href="/dashboard" class="col-md-4 offset-md-4">Dashboard</a>
+      <a href="/logout">Logout</a>
+    <div class="row">
+      <div class="col">
+        {% for trip in all_trips %}
+        <h3 class="trip_info">{{ trip['destination'] }}</h3>
+            <p>Start Date: {{ trip['start_date'] }}</p>
+            <p>End Date: {{ trip['end_date']}}</p>
+            <p>Created On: {{ trip['created_at'] }}</p>
+            <p>Last Updated: {{ trip['updated_at'] }}</p>
+            <p>Plan: {{ trip['plan'] }}</p>
+            <p>Created by: {{ trip['first_name'] }}</p>
+        {% endfor %}
+    </div>
+  </div>
+</body>
+</html>

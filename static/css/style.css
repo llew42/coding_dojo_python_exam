@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.container-fluid{
+  margin: 0 auto;
+  padding-bottom: 100px;
+}
+h1{
+  display: inline-block;
+  padding-bottom: 50px;
+  margin-left: 150px;
+}
+a{
+  display: inline-block;
+}
+h3{
+  padding-bottom: 25px;
+}
+.btn-outline-primary{
+  width: 100px;
+}
+.trip_info{
+  border: 1px solid #000000;
+}
+.red{
+  color: red;
+}
+.green{
+  color: green;
+}

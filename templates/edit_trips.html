@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>Edit Trip</title>
+</head>
+<body>
+  <!-- EDIT USER TRIPS -->
+  <div class="container-fluid">
+    <h1>Hello {{ session['first_name'] }}! Let's edit your trip!</h1>
+    <a href="/logout" class="col-md-4 offset-md-4">Logout</a>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="red">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    <div class="form-group">
+      {% for trip in edit_trip %}
+        <form action="/trips/edit/{{ trip['id'] }}" method="POST">
+          <p>Destination: <input type="text" value="{{ trip['destination'] }}" name="destination" class="form-control"></p>
+          <p>Start Date: <input type="date" name="sdate" value="{{ trip['start_date'] }}" class="form-control"></p> 
+          <p>End Date:  <input type="date" name="edate" value="{{ trip['end_date'] }}" class="form-control"></p> 
+          <p>Plan: <input type="text" name="plan" value="{{ trip['plan'] }}" class="form-control"></p>
+          <input type="submit" value="Update trip" class="btn btn-success">
+        </form>
+      {% endfor %}
+      </div>
+  </div>
+</body>
+</html>
